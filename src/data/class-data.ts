@@ -7,6 +7,8 @@ import { shadow } from '@/data/classes/shadow/shadow';
 import { tactician } from '@/data/classes/tactician/tactician';
 import { talent } from '@/data/classes/talent/talent';
 import { troubadour } from '@/data/classes/troubadour/troubadour';
+import { summoner } from '@/data/classes/summoner/summoner'; 
+
 
 export class ClassData {
 	static censor = censor;
@@ -18,4 +20,5 @@ export class ClassData {
 	static tactician = tactician;
 	static talent = talent;
 	static troubadour = troubadour;
+	static summoner = summoner; 
 }

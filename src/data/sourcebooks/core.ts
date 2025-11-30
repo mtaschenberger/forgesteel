@@ -75,7 +75,8 @@ export const core: Sourcebook = {
 		ClassData.shadow,
 		ClassData.tactician,
 		ClassData.talent,
-		ClassData.troubadour
+		ClassData.troubadour,
+		ClassData.summoner
 	],
 	complications: [
 		ComplicationData.advancedStudies,
