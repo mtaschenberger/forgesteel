@@ -69,6 +69,8 @@ export default defineConfig({
 	],
 	publicDir: 'public',
 	server: {
+		host: '0.0.0.0', // allow external connections to dev server
+		allowedHosts: ['forgesteel.onrender.com'], // the Render URL
 		headers: {
 			'Service-Worker-Allowed': '/forgesteel/'
 		}
