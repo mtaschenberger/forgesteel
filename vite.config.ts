@@ -1,11 +1,12 @@
-import { generateManifest, manifestPlugin } from './vite-plugin-manifest';
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { generateManifest, manifestPlugin } from './vite-plugin-manifest';
 
-// https://vitejs.dev/config/
+const isProd = process.env.NODE_ENV === 'production';
+
 export default defineConfig({
-	base: '/forgesteel/',
+	base: isProd ? '/' : '/forgesteel/',  // dev: keep, prod: root
 	build: {
 		chunkSizeWarningLimit: 10000,
 		rollupOptions: {
@@ -14,9 +15,8 @@ export default defineConfig({
 				sw: './src/sw.ts'
 			},
 			output: {
-				entryFileNames: chunkInfo => {
-					return chunkInfo.name === 'sw' ? 'sw.js' : '[name]-[hash].js';
-				}
+				entryFileNames: chunkInfo =>
+					chunkInfo.name === 'sw' ? 'sw.js' : '[name]-[hash].js'
 			}
 		}
 	},
@@ -24,12 +24,10 @@ export default defineConfig({
 		react(),
 		tsconfigPaths(),
 		manifestPlugin(),
-		// Dev server plugin to serve manifest.json and sw.js
 		{
 			name: 'dev-pwa-files',
 			configureServer(server) {
-				// Serve manifest.json during development
-				// Handle both possible paths due to Vite's base path resolution
+				// Only needed in dev – fine as is
 				server.middlewares.use('/forgesteel/forgesteel/manifest.json', (_, res) => {
 					const manifest = generateManifest();
 					res.setHeader('Content-Type', 'application/json');
@@ -41,13 +39,11 @@ export default defineConfig({
 					res.end(JSON.stringify(manifest, null, 2));
 				});
 
-				// Serve sw.js during development (compiled on-the-fly)
 				server.middlewares.use('/forgesteel/sw.js', async (_, res) => {
 					try {
-						// Import and compile the service worker
 						const { build } = await import('esbuild');
 						const result = await build({
-							entryPoints: [ 'src/sw.ts' ],
+							entryPoints: ['src/sw.ts'],
 							bundle: true,
 							write: false,
 							format: 'iife',
@@ -69,8 +65,6 @@ export default defineConfig({
 	],
 	publicDir: 'public',
 	server: {
-		host: '0.0.0.0', // allow external connections to dev server
-		allowedHosts: ['forgesteel.onrender.com'], // the Render URL
 		headers: {
 			'Service-Worker-Allowed': '/forgesteel/'
 		}
