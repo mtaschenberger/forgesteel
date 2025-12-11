@@ -37,7 +37,7 @@ You can also take advantage of powerful magic to buff your allies, whittle down 
 				FactoryLogic.feature.createBonus({
 					id: 'summoner-stamina',
 					field: FeatureField.Stamina,
-					value: 18,
+					value: 15,
 					valuePerLevel: 6
 				}),
 				FactoryLogic.feature.createBonus({
@@ -227,7 +227,7 @@ You can shift into squares that contain one of your minions, even if they occupy
 							feature: FactoryLogic.feature.create({
 								id: 'summoner-1-7b',
 								name: 'Platoon Formation',
-								description: 'Whenever one of your squads uses a damaging ability, one of their targets takes an extra 3 damage.'
+								description: 'Whenever one of your squads uses a damaging ability, one of their targets takes damage equal to your Reason.'
 							}),
 							value: 1
 						},
@@ -235,7 +235,7 @@ You can shift into squares that contain one of your minions, even if they occupy
 							feature: FactoryLogic.feature.create({
 								id: 'summoner-1-7c',
 								name: 'Elite Formation',
-								description: 'Each of your minions have their Stamina increased by 3.'
+								description: 'Each of your minions have their Stamina increased by 3 & 1 Stability.'
 							}),
 							value: 1
 						},
@@ -289,7 +289,7 @@ You can shift into squares that contain one of your minions, even if they occupy
 							feature: FactoryLogic.feature.createAbility({
 								ability: FactoryLogic.createAbility({
 									id: 'summoner-1-8b',
-									name: 'Impede!',
+									name: 'Halt!',
 									description: 'You order a minion to get in the way.',
 									type: FactoryLogic.type.createTrigger('The target starts their turn, moves, or is force moved.'),
 									distance: [ FactoryLogic.distance.createSummoner() ],
@@ -314,6 +314,7 @@ You can shift into squares that contain one of your minions, even if they occupy
 									type: FactoryLogic.type.createTrigger('The target receives enough damage to die or be destroyed.'),
 									distance: [ FactoryLogic.distance.createSummoner() ],
 									target: 'One ally',
+									cost: 3,
 									sections: [
 										FactoryLogic.createAbilitySectionField({
 											name: 'Special',
@@ -329,7 +330,7 @@ You can shift into squares that contain one of your minions, even if they occupy
 							feature: FactoryLogic.feature.createAbility({
 								ability: FactoryLogic.createAbility({
 									id: 'summoner-1-8d',
-									name: 'Take the Hit!',
+									name: 'Shield!',
 									description: 'You call upon a minion to use their body to dampen the blow.',
 									type: FactoryLogic.type.createTrigger('The target is targeted by a strike.'),
 									distance: [ FactoryLogic.distance.createSummoner() ],
@@ -947,7 +948,7 @@ If they move adjacent to their target, become targeted by an opportunity attack,
 		}),
 		FactoryLogic.createAbility({
 			id: 'summoner-ability-5',
-			name: 'Summoner\'s Cradle',
+			name: 'Shield\'s of Essence',
 			description: 'You call forth protective forces to keep you all from harm.',
 			type: FactoryLogic.type.createManeuver(),
 			keywords: [ AbilityKeyword.Magic, AbilityKeyword.Ranged ],
@@ -984,7 +985,7 @@ If they move adjacent to their target, become targeted by an opportunity attack,
 						tier3: '4 + R damage'
 					})
 				),
-				FactoryLogic.createAbilitySectionText('This strike deals an additional 1 damage for each minion ally adjacent to you, or 2 damage for each non-minion ally adjacent to you.')
+				FactoryLogic.createAbilitySectionText('This strike deals an additional 2 damage for each ally adjacent to you')
 			]
 		}),
 		FactoryLogic.createAbility({

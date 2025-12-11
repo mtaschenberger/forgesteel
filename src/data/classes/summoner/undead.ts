@@ -58,7 +58,7 @@ This ability becomes a free triggered action if the target was a minion (either 
 								stability: 1,
 								freeStrikeDamage: 1,
 								freeStrikeType: DamageType.Corruption,
-								characteristics: FactoryLogic.createCharacteristics(2, -2, 0, 0, -2),
+								characteristics: FactoryLogic.createCharacteristics(2, 0, .1, -1, -1),
 								features: [
 									FactoryLogic.feature.createDamageModifier({
 										id: 'summoner-4-1-4a-1',
@@ -102,7 +102,7 @@ This ability becomes a free triggered action if the target was a minion (either 
 								encounterValue: 0,
 								size: FactoryLogic.createSize(1, 'M'),
 								speed: FactoryLogic.createSpeed(4),
-								stamina: 4,
+								stamina: 1,
 								stability: 1,
 								freeStrikeDamage: 2,
 								freeStrikeType: DamageType.Sonic,
@@ -153,7 +153,7 @@ This ability becomes a free triggered action if the target was a minion (either 
 								stamina: 2,
 								stability: 0,
 								freeStrikeDamage: 1,
-								characteristics: FactoryLogic.createCharacteristics(-2, 2, 0, 0, -2),
+								characteristics: FactoryLogic.createCharacteristics(2, 0, -1, -1, -1),
 								features: [
 									FactoryLogic.feature.createDamageModifier({
 										id: 'summoner-4-1-4c-1',
@@ -310,7 +310,7 @@ This ability becomes a free triggered action if the target was a minion (either 
 								speed: FactoryLogic.createSpeed(5),
 								stamina: 8,
 								stability: 0,
-								freeStrikeDamage: 4,
+								freeStrikeDamage: 1,
 								characteristics: FactoryLogic.createCharacteristics(2, -2, 0, 0, 1),
 								features: [
 									FactoryLogic.feature.createBonus({
@@ -513,7 +513,7 @@ This ability becomes a free triggered action if the target was a minion (either 
 								keywords: [ 'Undead' ],
 								encounterValue: 0,
 								size: FactoryLogic.createSize(2),
-								speed: FactoryLogic.createSpeed(5, 'burrow'),
+								speed: FactoryLogic.createSpeed(4, 'burrow'),
 								stamina: 4,
 								stability: 0,
 								freeStrikeDamage: 3,
